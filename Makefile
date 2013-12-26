@@ -1,7 +1,7 @@
 TARGET = lab.so
 OBJECTS = lab.o
 CC = gcc
-CFLAGS = -Wall -Wextra -D'AST_MODULE="lab"' -g -fPIC
+CFLAGS = -Wall -Wextra -D'_GNU_SOURCE' -D'AST_MODULE="lab"' -g -fPIC
 LDFLAGS = -Wall -shared
 
 .PHONY: install clean
