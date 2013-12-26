@@ -2,7 +2,7 @@
 #include <asterisk/cli.h>
 #include <asterisk/module.h>
 
-static char *lab_foo(struct ast_cli_entry *e, int cmd, struct ast_cli_args *a)
+static char *cli_foo(struct ast_cli_entry *e, int cmd, struct ast_cli_args *a)
 {
 	switch (cmd) {
 	case CLI_INIT:
@@ -17,13 +17,13 @@ static char *lab_foo(struct ast_cli_entry *e, int cmd, struct ast_cli_args *a)
 	return CLI_SUCCESS;
 }
 
-static struct ast_cli_entry cli_test[] = {
-	AST_CLI_DEFINE(lab_foo, ""),
+static struct ast_cli_entry cli_entries[] = {
+	AST_CLI_DEFINE(cli_foo, ""),
 };
 
 static int load_module(void)
 {
-	ast_cli_register_multiple(cli_test, ARRAY_LEN(cli_test));
+	ast_cli_register_multiple(cli_entries, ARRAY_LEN(cli_entries));
 
 	ast_log(LOG_NOTICE, "Lab module loaded\n");
 
@@ -32,7 +32,9 @@ static int load_module(void)
 
 static int unload_module(void)
 {
-	ast_cli_unregister_multiple(cli_test, ARRAY_LEN(cli_test));
+	ast_cli_unregister_multiple(cli_entries, ARRAY_LEN(cli_entries));
+
+	ast_log(LOG_NOTICE, "Lab module unloaded\n");
 
 	return 0;
 }
