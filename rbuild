@@ -2,7 +2,7 @@
 
 HOST="${HOST:-xivo}"
 
-rsync -v -rtlp --exclude=.git ./ "$HOST":asterisk-lab
+rsync -v -rlp --exclude=.git ./ "$HOST":asterisk-lab
 ssh "$HOST" sh -e <<EOF
 cd asterisk-lab
 make
