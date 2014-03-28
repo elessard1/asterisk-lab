@@ -125,8 +125,6 @@ static int load_module(void)
 
 	ast_cli_register_multiple(cli_test, ARRAY_LEN(cli_test));
 
-	ast_log(LOG_NOTICE, "Lab module loaded\n");
-
 	return AST_MODULE_LOAD_SUCCESS;
 
 failure:

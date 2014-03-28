@@ -17,8 +17,6 @@ static int load_module(void) {
 		return AST_MODULE_LOAD_DECLINE;
 	}
 
-	ast_log(LOG_NOTICE, "Lab module loaded\n");
-
 	return AST_MODULE_LOAD_SUCCESS;
 }
 
