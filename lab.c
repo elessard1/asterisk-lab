@@ -25,16 +25,12 @@ static int load_module(void)
 {
 	ast_cli_register_multiple(cli_entries, ARRAY_LEN(cli_entries));
 
-	ast_log(LOG_NOTICE, "Lab module loaded\n");
-
 	return AST_MODULE_LOAD_SUCCESS;
 }
 
 static int unload_module(void)
 {
 	ast_cli_unregister_multiple(cli_entries, ARRAY_LEN(cli_entries));
-
-	ast_log(LOG_NOTICE, "Lab module unloaded\n");
 
 	return 0;
 }

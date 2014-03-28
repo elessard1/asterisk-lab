@@ -1,7 +1,7 @@
 TARGET = lab.so
 OBJECTS = lab.o
-CC = gcc
-CFLAGS = -Wall -Wextra -D'_GNU_SOURCE' -D'AST_MODULE="lab"' -g -fPIC
+CFLAGS = -Wall -Wextra -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Winit-self -Wmissing-format-attribute -Wformat=2 \
+	-g -fPIC -D'_GNU_SOURCE' -D'AST_MODULE="lab"'
 LDFLAGS = -Wall -shared
 
 .PHONY: install clean
@@ -10,8 +10,9 @@ $(TARGET): $(OBJECTS)
 	$(CC) $(LDFLAGS) $(OBJECTS) -o $@
 
 install: $(TARGET)
-	cp $(TARGET) /usr/lib/asterisk/modules/
+	mkdir -p $(DESTDIR)/usr/lib/asterisk/modules
+	install -m 644 $(TARGET) $(DESTDIR)/usr/lib/asterisk/modules/
 
 clean:
-	-rm -f $(OBJECTS)
-	-rm -f $(TARGET)
+	rm -f $(OBJECTS)
+	rm -f $(TARGET)
