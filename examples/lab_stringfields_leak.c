@@ -32,6 +32,9 @@ static void log_number_of_pool_(struct ast_string_field_pool *pool)
 
 static char *cli_set(struct ast_cli_entry *e, int cmd, struct ast_cli_args __attribute__((unused)) *a)
 {
+	char *local_data;
+	size_t size = 0;
+
 	switch (cmd) {
 	case CLI_INIT:
 		e->command = "lab set";
@@ -40,9 +43,29 @@ static char *cli_set(struct ast_cli_entry *e, int cmd, struct ast_cli_args __att
 		return NULL;
 	}
 
-	ast_string_field_set(&test, f1, "");
-	ast_string_field_set(&test, f1, data);
-	log_number_of_pool(&test);
+	if (a->argc == 3) {
+		size = atoi(a->argv[2]);
+	}
+
+	if (size) {
+		local_data = malloc(size);
+		if (!local_data) {
+			return CLI_FAILURE;
+		}
+
+		memset(local_data, 'E', size - 1);
+		local_data[size - 1] = '\0';
+
+		ast_string_field_set(&test, f1, "");
+		ast_string_field_set(&test, f1, local_data);
+		log_number_of_pool(&test);
+
+		free(local_data);
+	} else {
+		ast_string_field_set(&test, f1, "");
+		ast_string_field_set(&test, f1, data);
+		log_number_of_pool(&test);
+	}
 
 	return CLI_SUCCESS;
 }
