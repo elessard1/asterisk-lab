@@ -26,9 +26,7 @@ static char *cli_channel_setvar(struct ast_cli_entry *e, int cmd, struct ast_cli
 		return CLI_FAILURE;
 	}
 
-	ast_channel_lock(chan);
 	pbx_builtin_setvar_helper(chan, a->argv[3], a->argv[4]);
-	ast_channel_unlock(chan);
 
 	ast_channel_unref(chan);
 
