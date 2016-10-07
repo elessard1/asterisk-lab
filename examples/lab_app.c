@@ -5,7 +5,7 @@
 
 static const char *app = "IndicateHold";
 
-static int app_exec(struct ast_channel *chan, const char __attribute__((unused)) *data)
+static int app_exec(struct ast_channel *chan, const char *data)
 {
 	ast_indicate(chan, AST_CONTROL_HOLD);
 

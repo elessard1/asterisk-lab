@@ -4,7 +4,7 @@
 
 #include <fcntl.h>
 
-static void foo_periodic_fn(void __attribute((unused)) *data)
+static void foo_periodic_fn(void *data)
 {
 	ast_debug(1, "in foo periodic fn\n");
 }

@@ -30,7 +30,7 @@ static void log_number_of_pool_(struct ast_string_field_pool *pool)
 	ast_log(LOG_NOTICE, "pool stats (count, size, used, active): %u %zu %zu %zu\n", count, total_size, total_used, total_active);
 }
 
-static char *cli_set(struct ast_cli_entry *e, int cmd, struct ast_cli_args __attribute__((unused)) *a)
+static char *cli_set(struct ast_cli_entry *e, int cmd, struct ast_cli_args *a)
 {
 	char *local_data;
 	size_t size = 0;

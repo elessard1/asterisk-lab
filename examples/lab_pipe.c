@@ -5,7 +5,7 @@
 static pthread_t monitor_thread;
 static int pipefd[2] = {-1, -1};
 
-static void *monitor_thread_loop(void __attribute__((unused)) *data)
+static void *monitor_thread_loop(void *data)
 {
 	char *buf[256];
 	ssize_t res;

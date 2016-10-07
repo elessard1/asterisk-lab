@@ -13,7 +13,7 @@ static struct stasis_topic *topic;
 
 static struct stasis_forward *channel_forwarder;
 
-static void dial_cb(void __attribute((unused)) *data, struct stasis_subscription __attribute__((unused)) *sub, struct stasis_message *message)
+static void dial_cb(void *data, struct stasis_subscription *sub, struct stasis_message *message)
 {
 	struct ast_multi_channel_blob *blob = stasis_message_data(message);
 	struct ast_channel_snapshot *caller = ast_multi_channel_blob_get_channel(blob, "caller");
@@ -47,7 +47,7 @@ static void dial_cb(void __attribute((unused)) *data, struct stasis_subscription
 	}
 }
 
-static void local_bridge_cb(void __attribute((unused)) *data, struct stasis_subscription __attribute__((unused)) *sub, struct stasis_message *message)
+static void local_bridge_cb(void *data, struct stasis_subscription *sub, struct stasis_message *message)
 {
 	struct ast_multi_channel_blob *blob = stasis_message_data(message);
 	struct ast_channel_snapshot *c1 = ast_multi_channel_blob_get_channel(blob, "1");

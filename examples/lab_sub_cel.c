@@ -5,7 +5,7 @@
 
 static struct ast_event_sub *event_sub;
 
-static void lab_log(const struct ast_event *event, void __attribute__((unused)) *userdata)
+static void lab_log(const struct ast_event *event, void *userdata)
 {
 	struct ast_cel_event_record record = {
 		.version = AST_CEL_EVENT_RECORD_VERSION,
